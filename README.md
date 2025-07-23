@@ -37,7 +37,7 @@ A lightweight, easy-to-configure Spigot plugin that adds a robust delayed telepo
 
 ## Installation
 
-1. Download the latest `UltraSpawnPlusPlus.jar` from the [Releases](https://github.com/yourusername/UltraSpawnPlusPlus/releases).  
+1. Download the latest `UltraSpawnPlusPlus.jar` from the [Releases](https://github.com/SansCraft-Network/UltraSpawnPlusPlus/releases).  
 2. Drop the JAR into your server’s `plugins/` folder.  
 3. Start or reload your server.  
 
@@ -93,7 +93,7 @@ Players without the required permission see the configured `permission-message`.
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/UltraSpawnPlusPlus.git
+git clone https://github.com/SansCraft-Network/UltraSpawnPlusPlus.git
 
 # Enter project folder
 cd UltraSpawnPlusPlus
@@ -113,7 +113,7 @@ Compiled JAR will be in `target/` (Maven) or `build/libs/` (Gradle).
 
 Contributions are welcome! Feel free to:
 
-- Report bugs and open feature requests in [Issues](https://github.com/yourusername/UltraSpawnPlusPlus/issues).  
+- Report bugs and open feature requests in [Issues](https://github.com/SansCraft-Network/UltraSpawnPlusPlus/issues).  
 - Submit pull requests with clear descriptions of changes.  
 - Follow existing code style and include Javadoc where appropriate.  
 
