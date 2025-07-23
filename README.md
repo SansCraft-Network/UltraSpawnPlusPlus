@@ -83,10 +83,10 @@ Players without the required permission see the configured `permission-message`.
 
 - `ultaspawn.spawn`  
   Allows use of `/spawn`.
-  Default: [✔] True
-- `ultraspawn.admin`
-  Allows changing of plugin configuration
-  Default: [X] False
+  Default: [✔] True  
+- `ultraspawn.admin`  
+  Allows changing of plugin configuration  
+  Default: [X] False  
 ---
 
 ## Development
