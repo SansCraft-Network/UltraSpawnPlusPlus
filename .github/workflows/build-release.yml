@@ -2,8 +2,8 @@ name: Build and Release
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -24,19 +24,3 @@ jobs:
         with:
           name: UltraSpawnPlusPlus
           path: target/UltraSpawnPlusPlus*.jar
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')
-    steps:
-      - name: Download JAR Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: UltraSpawnPlusPlus
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: UltraSpawnPlusPlus*.jar
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
