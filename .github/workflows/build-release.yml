@@ -1,6 +1,12 @@
 name: Build and Release
 
 on:
+permissions:
+  deployments: write
+  contents: write
+  statuses: write
+  actions: write
+  checks: read
   push:
     branches:
       - main
