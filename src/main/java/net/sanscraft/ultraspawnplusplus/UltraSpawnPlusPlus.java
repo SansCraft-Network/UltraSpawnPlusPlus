@@ -11,6 +11,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -19,6 +21,26 @@ import java.util.Map;
 import java.util.UUID;
 
 public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
+    // --- Spawn on join/respawn ---
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        if (player.hasPermission("ultraspawn.admin") || player.hasPermission("ultraspawn.nojoinspawn")) return;
+        Location spawn = getSpawnLocation();
+        if (spawn != null) {
+            player.teleport(spawn);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        Player player = event.getPlayer();
+        if (player.hasPermission("ultraspawn.admin") || player.hasPermission("ultraspawn.nojoinspawn")) return;
+        Location spawn = getSpawnLocation();
+        if (spawn != null) {
+            event.setRespawnLocation(spawn);
+        }
+    }
     private boolean hubEnabled;
     private String hubServer;
     private FileConfiguration config;
@@ -53,6 +75,28 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        // /setspawn command
+        if (cmd.equals("setspawn")) {
+            if (!(sender instanceof Player)) {
+                sender.sendMessage("This command can only be used by players.");
+                return true;
+            }
+            Player player = (Player) sender;
+            if (!player.hasPermission("ultraspawn.admin")) {
+                player.sendMessage("You do not have permission to use /setspawn.");
+                return true;
+            }
+            Location loc = player.getLocation();
+            config.set("spawn.world", loc.getWorld().getName());
+            config.set("spawn.x", loc.getX());
+            config.set("spawn.y", loc.getY());
+            config.set("spawn.z", loc.getZ());
+            config.set("spawn.yaw", loc.getYaw());
+            config.set("spawn.pitch", loc.getPitch());
+            saveConfig();
+            player.sendMessage("Spawn location set to your current position.");
+            return true;
+        }
         String cmd = command.getName().toLowerCase();
         // /spawn command
         if (cmd.equals("spawn")) {
@@ -99,6 +143,13 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
             player.sendMessage(startMsg);
             Location startLoc = player.getLocation().getBlock().getLocation();
             startLocations.put(player.getUniqueId(), startLoc);
+            final String countdownSound = config.getString("sound.countdown", "block.note_block.pling");
+            final float countdownVolume = (float) config.getDouble("sound.countdown-volume", 1.0);
+            final float minPitch = (float) config.getDouble("sound.countdown-pitch-min", 0.5);
+            final float maxPitch = (float) config.getDouble("sound.countdown-pitch-max", 2.0);
+            final String finishSound = config.getString("sound.finish", "block.beacon.activate");
+            final float finishVolume = (float) config.getDouble("sound.finish-volume", 1.0);
+            final float finishPitch = (float) config.getDouble("sound.finish-pitch", 1.0);
             BukkitRunnable task = new BukkitRunnable() {
                 int seconds = delaySeconds;
                 @Override
@@ -107,6 +158,7 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
                         teleportTasks.remove(player.getUniqueId());
                         startLocations.remove(player.getUniqueId());
                         player.sendMessage(config.getString("messages.finish", "Teleporting now!"));
+                        player.playSound(player.getLocation(), finishSound, finishVolume, finishPitch);
                         Location spawn = getSpawnLocation();
                         if (spawn != null) player.teleport(spawn);
                         cancel();
@@ -146,6 +198,9 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
                             bar.setProgress(Math.max(0.0, (double) seconds / delaySeconds));
                         }
                     }
+                    // Play configurable countdown sound with changing pitch
+                    float pitch = minPitch + (maxPitch - minPitch) * (delaySeconds - seconds) / Math.max(1, delaySeconds);
+                    player.playSound(player.getLocation(), countdownSound, countdownVolume, pitch);
                     seconds--;
                 }
             };

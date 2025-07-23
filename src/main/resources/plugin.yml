@@ -19,6 +19,10 @@ commands:
     description: Send player to the hub server (if enabled)
     usage: /hub
     permission: ultraspawn.hub
+  setspawn:s
+    description: Set the spawn location to your current position
+    usage: /setspawn
+    permission: ultraspawn.admin
 permissions:
   ultraspawn.spawn:
     description: Allows use of /spawn
@@ -34,6 +38,9 @@ permissions:
     default: false
   ultraspawn.customcooldown.seconds.*:
     description: Set a custom cooldown in seconds. Use 'ultraspawn.customcooldown.seconds.3' for 3 seconds, etc.
+    default: false
+  ultraspawn.nojoinspawn:
+    description: Prevents player from being teleported to spawn on join/respawn
     default: false
   ultraspawn.hub:
     description: Allows use of /hub command to send to proxy hub

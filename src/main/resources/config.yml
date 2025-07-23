@@ -1,3 +1,12 @@
+# Sound options for /spawn
+sound:
+  countdown: "block.note_block.pling"   # Sound played every second during countdown
+  finish: "block.beacon.activate"       # Sound played when teleport completes
+  countdown-volume: 1.0
+  countdown-pitch-min: 0.5
+  countdown-pitch-max: 2.0
+  finish-volume: 1.0
+  finish-pitch: 1.0
 #######################################################################
 # UltraSpawnPlusPlus - Main Configuration
 #

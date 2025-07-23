@@ -20,8 +20,24 @@ public class UltraSpawnTabCompleter implements TabCompleter {
         }
         if (cmd.equals("ultraspawnconfig")) {
             if (args.length == 1) {
-                // Suggest top-level config keys
-                return Arrays.asList("delay", "display.bossbar", "display.actionbar", "display.bossbar-title", "display.bossbar-color", "display.bossbar-style", "display.actionbar-message", "hub.enabled", "hub.server");
+                // Suggest all editable config keys
+                return Arrays.asList(
+                    "delay",
+                    "display.bossbar",
+                    "display.actionbar",
+                    "display.bossbar-title",
+                    "display.bossbar-color",
+                    "display.bossbar-style",
+                    "display.actionbar-message",
+                    "hub.enabled",
+                    "hub.server",
+                    "spawn.world",
+                    "spawn.x",
+                    "spawn.y",
+                    "spawn.z",
+                    "spawn.yaw",
+                    "spawn.pitch"
+                );
             }
             return Collections.emptyList();
         }
