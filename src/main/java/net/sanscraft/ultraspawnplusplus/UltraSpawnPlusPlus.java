@@ -75,6 +75,7 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        String cmd = command.getName().toLowerCase();
         // /setspawn command
         if (cmd.equals("setspawn")) {
             if (!(sender instanceof Player)) {
@@ -97,7 +98,6 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
             player.sendMessage("Spawn location set to your current position.");
             return true;
         }
-        String cmd = command.getName().toLowerCase();
         // /spawn command
         if (cmd.equals("spawn")) {
             if (!(sender instanceof Player)) {
