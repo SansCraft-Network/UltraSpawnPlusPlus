@@ -30,7 +30,8 @@ A lightweight, easy-to-configure Spigot plugin that adds a robust delayed telepo
 
 - Java 8 or higher  
 - Spigot API 1.13+ (compatible with Paper)  
-- Maven or Gradle (for building)  
+- Maven or Gradle (for building)
+- Spigot from 1.16.5 upto 1.21.7 is supported  
 
 ---
 
