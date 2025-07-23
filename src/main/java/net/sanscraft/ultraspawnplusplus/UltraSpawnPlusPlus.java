@@ -160,9 +160,12 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
                         teleportTasks.remove(player.getUniqueId());
                         startLocations.remove(player.getUniqueId());
                         player.sendMessage(config.getString("messages.finish", "Teleporting now!"));
-                        player.playSound(player.getLocation(), finishSound, finishVolume, finishPitch);
                         Location spawn = getSpawnLocation();
-                        if (spawn != null) player.teleport(spawn);
+                        if (spawn != null) {
+                            player.teleport(spawn);
+                            // Play finish sound at the spawn location after teleport
+                            player.playSound(spawn, finishSound, finishVolume, finishPitch);
+                        }
                         cancel();
                         return;
                     }
