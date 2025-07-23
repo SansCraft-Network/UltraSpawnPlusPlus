@@ -71,6 +71,8 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
         getCommand("ultraspawnconfig").setTabCompleter(new UltraSpawnTabCompleter());
         getCommand("hub").setTabCompleter(new UltraSpawnTabCompleter());
         getServer().getPluginManager().registerEvents(this, this);
+        // Register BungeeCord plugin messaging channel
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 
     @Override
@@ -288,28 +290,18 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
                 player.sendMessage("You do not have permission to use /hub.");
                 return true;
             }
-            // Send player to proxy server (Velocity/BungeeCord)
-            // Try Velocity first, then BungeeCord
+            // Send player to proxy server (Velocity/BungeeCord compatible)
+            player.sendMessage("Sending you to " + hubServer + "...");
+            java.io.ByteArrayOutputStream b = new java.io.ByteArrayOutputStream();
+            java.io.DataOutputStream out = new java.io.DataOutputStream(b);
             try {
-                // Velocity
-                Class<?> velocityClass = Class.forName("com.velocitypowered.api.proxy.Player");
-                // If present, use plugin messaging channel
-                player.sendMessage("Sending you to " + hubServer + "...");
-                player.sendPluginMessage(this, "velocity:server", hubServer.getBytes());
-            } catch (ClassNotFoundException e) {
-                // Fallback to BungeeCord
-                player.sendMessage("Sending you to " + hubServer + "...");
-                java.io.ByteArrayOutputStream b = new java.io.ByteArrayOutputStream();
-                java.io.DataOutputStream out = new java.io.DataOutputStream(b);
-                try {
-                    out.writeUTF("Connect");
-                    out.writeUTF(hubServer);
-                } catch (Exception ex) {
-                    player.sendMessage("Failed to send you to the hub server.");
-                    return true;
-                }
-                player.sendPluginMessage(this, "BungeeCord", b.toByteArray());
+                out.writeUTF("Connect");
+                out.writeUTF(hubServer);
+            } catch (Exception ex) {
+                player.sendMessage("Failed to send you to the hub server.");
+                return true;
             }
+            player.sendPluginMessage(this, "BungeeCord", b.toByteArray());
             return true;
         }
         return false;
