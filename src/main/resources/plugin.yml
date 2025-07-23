@@ -19,7 +19,7 @@ commands:
     description: Send player to the hub server (if enabled)
     usage: /hub
     permission: ultraspawn.hub
-  setspawn:s
+  setspawn:
     description: Set the spawn location to your current position
     usage: /setspawn
     permission: ultraspawn.admin
