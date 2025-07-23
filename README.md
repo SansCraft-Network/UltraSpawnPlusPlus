@@ -1,8 +1,3 @@
-**Repository Description**  
-UltraSpawnPlusPlus: A Spigot plugin offering a configurable delayed /spawn teleport that cancels if you move or take damage.
-
----
-
 # UltraSpawnPlusPlus
 
 A lightweight, easy-to-configure Spigot plugin that adds a robust delayed teleport to spawn. Players get a visible countdown, and the teleport is automatically cancelled if they move or receive damage during the delay.
