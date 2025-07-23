@@ -7,6 +7,18 @@ commands:
     description: Teleport to spawn with a delay
     usage: /spawn
     permission: ultraspawn.spawn
+  ultraspawnreload:
+    description: Reload UltraSpawnPlusPlus config
+    usage: /ultraspawnreload
+    permission: ultraspawn.admin
+  ultraspawnconfig:
+    description: Edit UltraSpawnPlusPlus config in-game
+    usage: /ultraspawnconfig <key> <value>
+    permission: ultraspawn.admin
+  hub:
+    description: Send player to the hub server (if enabled)
+    usage: /hub
+    permission: ultraspawn.hub
 permissions:
   ultraspawn.spawn:
     description: Allows use of /spawn
@@ -23,3 +35,6 @@ permissions:
   ultraspawn.customcooldown.seconds.*:
     description: Set a custom cooldown in seconds. Use 'ultraspawn.customcooldown.seconds.3' for 3 seconds, etc.
     default: false
+  ultraspawn.hub:
+    description: Allows use of /hub command to send to proxy hub
+    default: true

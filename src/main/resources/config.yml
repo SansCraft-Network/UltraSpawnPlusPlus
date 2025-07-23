@@ -21,6 +21,11 @@
 #   All support color codes and placeholders as shown below.
 #######################################################################
 
+# Hub/Proxy options
+hub:
+  enabled: false
+  server: lobby
+
 spawn:
   world: world
   x: 0.39
