@@ -1,0 +1,48 @@
+#######################################################################
+# UltraSpawnPlusPlus - Main Configuration
+#
+# Permissions (set with LuckPerms, PermissionsEx, etc):
+#   ultraspawn.spawn                - Allow /spawn
+#   ultraspawn.admin                - Allow config reloads/changes
+#   ultraspawn.bypasscooldown       - Instantly teleport, no countdown
+#   ultraspawn.customcooldown.ticks.N   - Custom cooldown in ticks (20 = 1s)
+#   ultraspawn.customcooldown.seconds.N - Custom cooldown in seconds
+#     (If a player has multiple, the shortest is used)
+#
+# Display options:
+#   display.bossbar: true/false         - Show time left in bossbar
+#   display.bossbar-title: <string>     - Bossbar title, %seconds% replaced
+#   display.bossbar-color: <color>      - PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+#   display.bossbar-style: <style>      - SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+#   display.actionbar: true/false       - Show time left in actionbar
+#   display.actionbar-message: <string> - Actionbar message, %seconds% replaced
+#
+# Messages:
+#   All support color codes and placeholders as shown below.
+#######################################################################
+
+spawn:
+  world: world
+  x: 0.39
+  y: 198.0
+  z: 0.62
+  yaw: 0.47
+  pitch: 33.57
+
+# Default countdown in seconds (if no custom permission)
+delay: 5      # countdown in seconds
+
+display:
+  bossbar: false   # Show time left in bossbar
+  bossbar-title: "✨ Teleporting in %seconds% second(s)... ✨"
+  bossbar-color: "BLUE"   # Options: PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+  bossbar-style: "SOLID"  # Options: SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+  actionbar: false # Show time left in actionbar
+  actionbar-message: "✨ Teleporting in %seconds% second(s)... ✨"
+
+messages:
+  countdown: "✨ Teleporting in %seconds% second(s)... ✨"
+  cancel_move: "Teleport cancelled: you moved!"
+  cancel_damage: "Teleport cancelled: you took damage!"
+  start: "✨ Teleporting in %delay% seconds... ✨"
+  finish: "✅ Teleporting now!"

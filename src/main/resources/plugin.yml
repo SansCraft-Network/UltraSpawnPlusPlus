@@ -1,0 +1,25 @@
+name: UltraSpawnPlusPlus
+main: net.sanscraft.ultraspawnplusplus.UltraSpawnPlusPlus
+version: 1.0.0
+api-version: 1.13
+commands:
+  spawn:
+    description: Teleport to spawn with a delay
+    usage: /spawn
+    permission: ultraspawn.spawn
+permissions:
+  ultraspawn.spawn:
+    description: Allows use of /spawn
+    default: true
+  ultraspawn.admin:
+    description: Allows changing plugin configuration
+    default: op
+  ultraspawn.bypasscooldown:
+    description: Allows instant teleport, bypassing the countdown
+    default: false
+  ultraspawn.customcooldown.ticks.*:
+    description: Set a custom cooldown in ticks (20 ticks = 1 second). Use 'ultraspawn.customcooldown.ticks.40' for 2 seconds, etc.
+    default: false
+  ultraspawn.customcooldown.seconds.*:
+    description: Set a custom cooldown in seconds. Use 'ultraspawn.customcooldown.seconds.3' for 3 seconds, etc.
+    default: false
