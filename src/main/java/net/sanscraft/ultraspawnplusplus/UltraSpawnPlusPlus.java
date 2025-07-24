@@ -35,7 +35,7 @@ public class UltraSpawnPlusPlus extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("ultraspawn.admin") || player.hasPermission("ultraspawn.nojoinspawn")) return;
+        // Always respawn at spawn regardless of admin/nojoinspawn permissions
         Location spawn = getSpawnLocation();
         if (spawn != null) {
             event.setRespawnLocation(spawn);

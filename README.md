@@ -55,11 +55,15 @@ All configuration is done in `plugins/UltraSpawnPlusPlus/config.yml`. On first r
 #
 # Permissions (set with LuckPerms, PermissionsEx, etc):
 #   ultraspawn.spawn                - Allow /spawn
-#   ultraspawn.admin                - Allow config reloads/changes
+#   ultraspawn.admin                - Allow config reloads/changes, bypass join spawn
 #   ultraspawn.bypasscooldown       - Instantly teleport, no countdown
+#   ultraspawn.nojoinspawn          - Bypass automatic spawn teleport on join only
 #   ultraspawn.customcooldown.ticks.N   - Custom cooldown in ticks (20 = 1s)
 #   ultraspawn.customcooldown.seconds.N - Custom cooldown in seconds
 #     (If a player has multiple, the shortest is used)
+#
+# Note: Players with admin or nojoinspawn permissions will NOT be teleported
+# to spawn when joining the server, but WILL still respawn at spawn when they die.
 #
 # Display options:
 #   display.bossbar: true/false         - Show time left in bossbar
@@ -121,10 +125,13 @@ Players without the required permission see the configured `permission-message`.
   Allows use of `/spawn`  
   Default: [✔] True  
 - `ultraspawn.admin`  
-  Allows changing of plugin configuration  
+  Allows changing of plugin configuration and bypasses automatic spawn teleport on join (but still respawns at spawn)  
   Default: [X] False  
 - `ultraspawn.bypasscooldown`  
   Instantly teleports, bypassing the countdown  
+  Default: [X] False  
+- `ultraspawn.nojoinspawn`  
+  Prevents automatic teleportation to spawn on join (but still respawns at spawn)  
   Default: [X] False  
 - `ultraspawn.customcooldown.ticks.N`  
   Set a custom cooldown in ticks (20 = 1 second). If a player has multiple, the shortest is used.  
